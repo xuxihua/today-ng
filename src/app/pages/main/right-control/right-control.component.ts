@@ -4,10 +4,11 @@ import { TodoComponent } from './todo/todo.component';
 @Component({
   selector: 'app-right-control',
   templateUrl: './right-control.component.html',
-  styleUrls: ['./right-control.component.less']
+  styleUrls: [ './right-control.component.less' ]
 })
 export class RightControlComponent implements OnInit {
-	@ViewChild(TodoComponent, { static : false }) public todoList: TodoComponent;
+  @ViewChild(TodoComponent, { static:true }) public todoList: TodoComponent;
+
   constructor() { }
 
   ngOnInit() {

@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { SetupComponent } from './pages/setup/setup.component';
-import { MainComponent } from './pages/main/main.component';
-
+import { InitGuardService } from './services/init-guard/init-guard.service';
 
 const routes: Routes = [
-	{ path: 'setup', component: SetupComponent },
-	{ path: 'main', redirectTo: '/main', pathMatch: 'full' },
-	{ path: '', redirectTo: '/main', pathMatch: 'full' },
+  { path: 'setup', component: SetupComponent, canActivate: [ InitGuardService ] },
+  { path: 'main', redirectTo: '/main', pathMatch: 'full' },
+  { path: 'summary', redirectTo: '/summary', pathMatch: 'full' },
+  { path: 'setting', redirectTo: '/setting', pathMatch: 'full' },
+  { path: '', redirectTo: '/setup', pathMatch: 'full' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [ RouterModule.forRoot(routes) ],
+  exports: [ RouterModule ]
 })
-
 export class AppRoutingModule { }

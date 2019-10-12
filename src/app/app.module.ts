@@ -13,11 +13,14 @@ import zh from '@angular/common/locales/zh';
 // modules
 import { SetupModule } from './pages/setup/setup.module';
 import { MainModule } from './pages/main/main.module';
+import { SummaryModule } from './pages/summary/summary.module';
+import { SettingModule } from './pages/setting/setting.module';
 
 // services
 import { LocalStorageService } from './services/local-storage/local-storage.service';
 import { ListService } from './services/list/list.service';
 import { TodoService } from './services/todo/todo.service';
+import { InitGuardService } from './services/init-guard/init-guard.service';
 
 registerLocaleData(zh);
 
@@ -33,13 +36,16 @@ registerLocaleData(zh);
     HttpClientModule,
     BrowserAnimationsModule,
     SetupModule,
-    MainModule
+    MainModule,
+    SummaryModule,
+    SettingModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
     LocalStorageService,
     ListService,
-    TodoService
+    TodoService,
+    InitGuardService
   ],
   bootstrap: [AppComponent]
 })

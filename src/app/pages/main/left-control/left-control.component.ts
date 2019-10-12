@@ -1,29 +1,38 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { LocalStorageService } from '../../../services/local-storage/local-storage.service'
-import { USERNAME } from '../../../services/local-storage/local-storage.namespace'
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { Router } from '@angular/router';
 import { ListComponent } from './list/list.component';
+import { LocalStorageService } from '../../../services/local-storage/local-storage.service';
+import { USERNAME } from '../../../services/local-storage/local-storage.namespace';
 
 @Component({
   selector: 'app-left-control',
   templateUrl: './left-control.component.html',
-  styleUrls: ['./left-control.component.less']
+  styleUrls: [ './left-control.component.less' ]
 })
 export class LeftControlComponent implements OnInit {
-	@Input() isCollapsed: boolean;
-	@ViewChild(ListComponent, { static : false }) listComponent: ListComponent;
+  @Input() isCollapsed: boolean;
+  @ViewChild(ListComponent, { static: true }) listComponent: ListComponent;
 
-	username: string;
+  username: string;
 
-  constructor(private store: LocalStorageService) { }
+  constructor(
+    private store: LocalStorageService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
-  	this.username = this.store.get(USERNAME);
+    this.username = this.store.get(USERNAME);
   }
 
   openAddListModal(): void {
-  	// 调用子组件
-  	this.listComponent.openAddListModal();
+    this.listComponent.openAddListModal();
   }
 
+  goSetting() {
+    this.router.navigateByUrl('/setting');
+  }
+
+  goSummary() {
+    this.router.navigateByUrl('/summary');
+  }
 }
